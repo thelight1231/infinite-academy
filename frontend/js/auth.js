@@ -1,6 +1,6 @@
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3000/api'
-    : 'https://infinite01.netlify.app/api';
+    ? 'http://localhost:3000/.netlify/functions/api'
+    : 'https://infinite01.netlify.app/.netlify/functions/api';
 
 const auth = {
     async login(email, password) {
@@ -13,10 +13,7 @@ const auth = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
                 },
-                mode: 'cors',
-                credentials: 'same-origin',
                 body: JSON.stringify({ email, password })
             });
 
@@ -49,10 +46,7 @@ const auth = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
                 },
-                mode: 'cors',
-                credentials: 'same-origin',
                 body: JSON.stringify({ name, email, password })
             });
 
