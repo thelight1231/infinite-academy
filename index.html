@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Academy</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body >
+      <!-- GIF Background -->
+      <div class="gif-background">
+        <img src="images/Infinity GIF.gif" alt="Infinity GIF Background">
+    </div>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="magical-logo">
+                <div class="infinity-logo">
+                    <canvas id="infinityCanvas" width="30" height="30"></canvas>
+                </div>
+                <span>INFINITE</span>
+            </a>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="register.html" class="nav-link">Register</a>
+            </div>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="magical-title-wrapper">
+                <h1 class="magical-title">Welcome to</h1>
+                <div class="infinite-text">
+                    <span class="gradient-text">INFINITE</span>
+                    <div class="sparkles">
+                        <i class="fas fa-sparkles"></i>
+                    </div>
+                </div>
+            </div>
+            <p class="magical-subtitle">May Our Light Never Ends?! ✨</p>
+            <div class="hero-buttons">
+                <a href="login.html" class="magical-button primary">
+                    <i class="fas fa-magic"></i>
+                    Begin Your Journey
+                </a>
+                <a href="courses.html" class="magical-button secondary">
+                    <i class="fas fa-book-open"></i>
+                    Explore Courses
+                </a>
+            </div>
+        </div>
+        <div class="floating-elements">
+            <div class="floating-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div class="floating-icon"><i class="fas fa-lightbulb"></i></div>
+            <div class="floating-icon"><i class="fas fa-rocket"></i></div>
+            <div class="floating-icon"><i class="fas fa-brain"></i></div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="section-content">
+            <h2>About Us</h2>
+            <p>We are a leading academic institution dedicated to providing quality education and fostering innovation.</p>
+        </div>
+    </section>
+
+    <section id="courses" class="section">
+        <div class="section-content">
+            <h2>Our Courses</h2>
+            <div class="home-course-grid">
+                <div class="home-course-card">
+                    <div class="home-course-content">
+                        <div class="course-icon-wrapper">
+                            <i class="fas fa-laptop-code course-icon"></i>
+                        </div>
+                        <h3 class="course-title">Computer Science</h3>
+                        <p class="course-description">Learn the fundamentals of programming, algorithms, and software development. Master modern technologies and build real-world applications.</p>
+                        <a href="courses.html" class="magical-button course-link">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="home-course-card">
+                    <div class="home-course-content">
+                        <div class="course-icon-wrapper">
+                            <i class="fas fa-chart-line course-icon"></i>
+                        </div>
+                        <h3 class="course-title">Business Administration</h3>
+                        <p class="course-description">Master essential business skills, leadership strategies, and management techniques. Develop expertise in organizational growth.</p>
+                        <a href="courses.html" class="magical-button course-link">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="home-course-card">
+                    <div class="home-course-content">
+                        <div class="course-icon-wrapper">
+                            <i class="fas fa-flask course-icon"></i>
+                        </div>
+                        <h3 class="course-title">Science & Technology</h3>
+                        <p class="course-description">Explore cutting-edge developments in science and technology. Learn about AI, robotics, and emerging technologies.</p>
+                        <a href="courses.html" class="magical-button course-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="section-content">
+            <h2>Contact Us</h2>
+            <p>Email:Bondokmolto@gmail.com | Phone: +201094510614</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 INFINITE.Made By Mohamed Adel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/infinityLogo.js"></script>
+    <script>
+        // Hamburger menu toggle
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburgerMenu.classList.toggle('active');
+        });
+    </script>
+    <script>
+        // Add this to your index.html
+        document.addEventListener('DOMContentLoaded', () => {
+        // Clear any existing token first
+        
+        console.log('Clearing any existing token...');
+        sessionStorage.clear();
+        
+        console.log('After clear - Token:', sessionStorage.getItem('token'));
+        console.log('After clear - User:', sessionStorage.getItem('user'));
+        
+        // Monitor storage changes
+        const originalSetItem = sessionStorage.setItem;
+        sessionStorage.setItem = function(key, value) {
+            console.log(`Setting ${key} in sessionStorage at:`, new Date().toISOString());
+            console.log('Stack trace:', new Error().stack);
+            originalSetItem.apply(this, arguments);
+        };
+    });
+    </script>
+    <script src="js/menu.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
