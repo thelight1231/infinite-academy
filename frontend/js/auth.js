@@ -11,8 +11,8 @@ const auth = {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                credentials: 'include',
                 mode: 'cors',
+                credentials: 'same-origin',  
                 body: JSON.stringify({ email, password })
             });
 
@@ -45,7 +45,7 @@ const auth = {
                     'Accept': 'application/json'
                 },
                 mode: 'cors',
-                credentials: 'include',
+                credentials: 'same-origin',  
                 body: JSON.stringify({ name, email, password })
             });
 
