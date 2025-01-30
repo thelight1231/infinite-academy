@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Academic Portal</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google and Facebook SDKs -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script type="module">
+        import auth from './js/auth.js';
+        // For register.html
+        document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match");
+                    return;
+                }
+                await auth.register(name, email, password);
+                window.location.href = 'home.html';
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="magical-logo">
+                <div class="infinity-logo">
+                    <canvas id="infinityCanvas" width="30" height="30"></canvas>
+                </div>
+                <span>INFINITE</span>
+            </a>
+        </div>
+    </nav>
+    <div class="magical-background"></div>
+    <div id="registerModal" class="modal active">
+        <div class="modal-content">
+            <span class="close-modal" onclick="window.location.href='index.html'">&times;</span>
+            <h2>Create Your Account</h2>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="registerName" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="registerEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="registerPassword" required placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirmPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit">Create Account</button>
+            </form>
+
+            <div class="social-login">
+                <p>Or register with:</p>
+                <!-- Google Register Button -->
+                <div id="g_id_onload"
+                     data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                     data-login_uri="https://yourdomain.com/register"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-size="large"
+                     data-theme="outline"
+                     data-text="sign_in_with"
+                     data-shape="rectangular"
+                     data-logo_alignment="left">
+                </div>
+                <!-- Facebook Register Button -->
+                <div id="fb-root"></div>
+                <div class="fb-login-button" 
+                     data-width="" 
+                     data-size="large" 
+                     data-button-type="continue_with" 
+                     data-layout="default" 
+                     data-auto-logout-link="false" 
+                     data-use-continue-as="false">
+                </div>
+            </div>
+
+            <p class="register-link">
+                Already have an account? <a href="login.html">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+
+        // Initialize Facebook SDK
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : 'YOUR_FACEBOOK_APP_ID',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v12.0'
+            });
+
+            FB.AppEvents.logPageView();   
+        };
+
+        // Handle Google Login
+        function handleCredentialResponse(response) {
+            // Send the response.credential to your backend for verification
+            console.log("Google Login Response:", response.credential);
+            // Example: fetch('/auth/google', { method: 'POST', body: JSON.stringify({ token: response.credential }) })
+        }
+    </script>
+    <script src="js/infinityLogo.js"></script>
+    <script src="js/menu.js"></script>
+    <footer>
+        <p>&copy; 2023 INFINITE.Made By Mohamed Adel. All rights reserved.</p>
+    </footer>
+    <script>
+        // Hamburger menu toggle
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburgerMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

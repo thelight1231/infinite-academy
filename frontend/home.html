@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Academic Portal</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="module">
+        import auth from './js/auth.js';
+        
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Checking authentication...');
+            console.log('Is authenticated:', auth.isAuthenticated());
+            console.log('Token in session storage:', sessionStorage.getItem('token'));
+            if (!auth.isAuthenticated()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Initialize the home page with user data
+            const user = auth.getCurrentUser();
+            // Add any home page initialization code here
+        });
+        document.getElementById('logout').addEventListener('click', () => {
+            auth.logout(); // This will handle the cleanup and redirect
+        });
+    </script>
+</head>
+<body>
+    <div class="magical-background"></div>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="magical-logo">
+                <div class="infinity-logo">
+                    <canvas id="infinityCanvas" width="30" height="30"></canvas>
+                </div>
+                <span>INFINITE</span>
+            </a>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="#" class="nav-link" id="logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="magical-title">Welcome, <span id="userName"></span></h1>
+            <p class="magical-subtitle">Explore your courses and resources.</p>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses-section">
+        <h2>Your Courses</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Computer Science</h3>
+                <p>Learn the fundamentals of programming and software development.</p>
+                <a href="#" class="magical-button">Start Course</a>
+            </div>
+            <div class="course-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Business Administration</h3>
+                <p>Master the skills needed to lead and manage organizations.</p>
+                <a href="#" class="magical-button">Start Course</a>
+            </div>
+            <div class="course-card">
+                <i class="fas fa-flask"></i>
+                <h3>Science and Technology</h3>
+                <p>Explore the latest advancements in science and technology.</p>
+                <a href="#" class="magical-button">Start Course</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/infinityLogo.js"></script>
+    <script>
+        document.querySelector('.hamburger-menu').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

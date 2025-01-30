@@ -1,0 +1,16 @@
+{
+    "name": "infinite-academy",
+    "version": "1.0.0",
+    "dependencies": {
+      "express": "^4.17.1",
+      "bcryptjs": "^2.4.3",
+      "mongoose": "^5.10.9",
+      "cors": "^2.8.5",
+      "jsonwebtoken": "^9.0.2",
+      "dotenv": "^16.4.7"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.4"
+    }
+}
+  

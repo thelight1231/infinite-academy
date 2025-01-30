@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Academic Portal</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google and Facebook SDKs -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script type="module">
+        import auth from './js/auth.js';
+        
+        // For login.html
+        document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                await auth.login(email, password);
+                window.location.href = 'home.html';
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+        // Add this to login.html's script section
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log(auth.isAuthenticated());
+            if (auth.isAuthenticated()) {
+                window.location.href = 'home.html';
+            }
+        });
+</script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="magical-logo">
+                <div class="infinity-logo">
+                    <canvas id="infinityCanvas" width="30" height="30"></canvas>
+                </div>
+                <span>INFINITE</span>
+            </a>
+        </div>
+    </nav>
+    <div class="magical-background"></div>
+    <div id="loginModal" class="modal active">
+        <div class="modal-content">
+            <span class="close-modal" onclick="window.location.href='index.html'">&times;</span>
+            <h2>Login to Your Account</h2>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit">Login</button>
+            </form>
+
+            <div class="social-login">
+                <p>Or login with:</p>
+                <!-- Google Login Button -->
+                <div id="g_id_onload"
+                     data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                     data-login_uri="https://yourdomain.com/login"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-size="large"
+                     data-theme="outline"
+                     data-text="sign_in_with"
+                     data-shape="rectangular"
+                     data-logo_alignment="left">
+                </div>
+
+                <!-- Facebook Login Button -->
+                <div id="fb-root"></div>
+                <div class="fb-login-button" 
+                     data-width="" 
+                     data-size="large" 
+                     data-button-type="continue_with" 
+                     data-layout="default" 
+                     data-auto-logout-link="false" 
+                     data-use-continue-as="false">
+                </div>
+            </div>
+
+            <p class="register-link">
+                Don't have an account? <a href="register.html">Register here</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Facebook SDK
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : 'YOUR_FACEBOOK_APP_ID',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v12.0'
+            });
+
+            FB.AppEvents.logPageView();   
+        };
+
+        // Handle Google Login
+        function handleCredentialResponse(response) {
+            // Send the response.credential to your backend for verification
+            console.log("Google Login Response:", response.credential);
+            // Example: fetch('/auth/google', { method: 'POST', body: JSON.stringify({ token: response.credential }) })
+        }
+    </script>
+    <script src="js/infinityLogo.js"></script>
+    <script>
+        // Hamburger menu toggle
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburgerMenu.classList.toggle('active');
+        });
+
+        // Form submission handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your login logic here
+            alert('Login successful!');
+        });
+    </script>
+    <footer>
+        <p>&copy; 2023 INFINITE.Made By Mohamed Adel. All rights reserved.</p>
+    </footer>
+</body>
+</html>

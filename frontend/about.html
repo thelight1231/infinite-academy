@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Infinite Academy</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- GIF Background -->
+  <div class="gif-background">
+    <img src="images/REECE ⌁ PARKER.gif" alt="REECE ⌁ PARKER.gif">
+</div>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="magical-logo">
+                <div class="infinity-logo">
+                    <canvas id="infinityCanvas" width="30" height="30"></canvas>
+                </div>
+                <span>INFINITE</span>
+            </a>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="register.html" class="nav-link">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="magical-title1">About Us</h1>
+            <p class="magical-subtitle1">Learn more about our mission and values.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-content">
+            <h2>Our Mission</h2>
+            <p>We are dedicated to providing high-quality education and fostering innovation in the fields of technology, business, and science. Our goal is to empower students with the knowledge and skills they need to succeed in a rapidly changing world.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-content">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-card-content">
+                        <div class="team-avatar">
+                            <i class="fas fa-user-tie team-icon"></i>
+                        </div>
+                        <h3 class="team-name">Ahmed Hamdy</h3>
+                        <p class="team-role">Founder & CEO</p>
+                        <div class="team-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-card-content">
+                        <div class="team-avatar">
+                            <i class="fas fa-user-graduate team-icon"></i>
+                        </div>
+                        <h3 class="team-name">Mohamed Adel</h3>
+                        <p class="team-role">Head of Academics</p>
+                        <div class="team-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-card-content">
+                        <div class="team-avatar">
+                            <i class="fas fa-chalkboard-teacher team-icon"></i>
+                        </div>
+                        <h3 class="team-name">Mohamed Adel</h3>
+                        <p class="team-role">Lead Instructor</p>
+                        <div class="team-social">
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-content">
+            <h2>Our Vision</h2>
+            <p>To be a leading institution in transformative education, creating future leaders and innovators who will make a positive impact on society.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 INFINITE.Made By Mohamed Adel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/infinityLogo.js"></script>
+    <script>
+        // Hamburger menu toggle
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburgerMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

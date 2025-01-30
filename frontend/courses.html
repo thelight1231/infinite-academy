@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Infinite Academy</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="gif-background">
+        <img src="images/Infinity GIF.gif" alt="Infinity GIF Background">
+    </div>
+    
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="magical-logo">
+                <div class="infinity-logo">
+                    <canvas id="infinityCanvas" width="30" height="30"></canvas>
+                </div>
+                <span>INFINITE</span>
+            </a>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="register.html" class="nav-link">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="magical-title">Our Courses</h1>
+            <p class="magical-subtitle">Explore our wide range of courses designed to help you achieve your goals.</p>
+        </div>
+    </div>
+
+    <section class="courses-section">
+        <div class="section-content">
+            <h2 class="magical-title">Our Courses</h2>
+            <p class="magical-subtitle">Embark on a journey of knowledge and discovery</p>
+            <div class="course-list">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Learn modern web development with HTML, CSS, and JavaScript. Build responsive and dynamic websites.</p>
+                    <a href="#" class="magical-button">Learn More</a>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Data Science</h3>
+                    <p>Master data analysis, machine learning, and statistical modeling. Turn data into actionable insights.</p>
+                    <a href="#" class="magical-button">Learn More</a>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <p>Create stunning mobile applications for iOS and Android. Learn cross-platform development.</p>
+                    <a href="#" class="magical-button">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 INFINITE.Made By Mohamed Adel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/infinityLogo.js"></script>
+    <script>
+        // Hamburger menu toggle
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburgerMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
