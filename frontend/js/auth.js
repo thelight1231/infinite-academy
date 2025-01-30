@@ -57,14 +57,18 @@ const auth = {
             });
 
             console.log('Response status:', response.status);
-            
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.message || 'Registration failed');
+            let data;
+            try {
+                data = await response.json();
+                console.log('Response data:', data);
+            } catch (e) {
+                console.error('Failed to parse response:', e);
+                throw new Error('Invalid server response');
             }
 
-            const data = await response.json();
-            console.log('Response data:', data);
+            if (!response.ok) {
+                throw new Error(data.message || 'Registration failed');
+            }
 
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
@@ -78,41 +82,33 @@ const auth = {
     },
 
     logout() {
-        console.log('Logging out...');
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('loginTime');
-        window.location.href = '/login.html';
     },
 
     isAuthenticated() {
         const token = localStorage.getItem('token');
         const loginTime = localStorage.getItem('loginTime');
         const MAX_SESSION_TIME = 24 * 60 * 60 * 1000; // 24 hours
-        
+
         if (!token || !loginTime) {
-            console.log('Not authenticated: token or login time missing');
-            return false;
-        }
-        
-        const elapsed = Date.now() - parseInt(loginTime);
-        if (elapsed >= MAX_SESSION_TIME) {
-            console.log('Not authenticated: session timed out');
+            console.log('Not authenticated: missing token or login time');
             return false;
         }
 
-        console.log('Authenticated');
+        const elapsed = Date.now() - parseInt(loginTime);
+        if (elapsed >= MAX_SESSION_TIME) {
+            console.log('Not authenticated: session expired');
+            return false;
+        }
+
         return true;
     },
 
     getCurrentUser() {
         const user = localStorage.getItem('user');
-        if (!user) {
-            console.log('No user data found');
-            return null;
-        }
-        console.log('Current user:', JSON.parse(user));
-        return JSON.parse(user);
+        return user ? JSON.parse(user) : null;
     }
 };
 
