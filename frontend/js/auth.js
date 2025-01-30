@@ -5,19 +5,24 @@ const API_URL = window.location.hostname === 'localhost' || window.location.host
 const auth = {
     async login(email, password) {
         try {
-            const response = await fetch(`${API_URL}/auth/login`, {
+            const url = `${API_URL}/auth/login`;
+            console.log('Login URL:', url);
+            
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 mode: 'cors',
-                credentials: 'same-origin',  
+                credentials: 'same-origin',
                 body: JSON.stringify({ email, password })
             });
 
+            console.log('Response status:', response.status);
             const data = await response.json();
-            
+            console.log('Response data:', data);
+
             if (!response.ok) {
                 throw new Error(data.message || 'Login failed');
             }
@@ -35,27 +40,28 @@ const auth = {
 
     async register(name, email, password) {
         try {
-            console.log('Attempting registration with:', { name, email });
-            console.log('API URL:', `${API_URL}/auth/register`);
+            const url = `${API_URL}/auth/register`;
+            console.log('Registration URL:', url);
+            console.log('Registration data:', { name, email });
             
-            const response = await fetch(`${API_URL}/auth/register`, {
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 mode: 'cors',
-                credentials: 'same-origin',  
+                credentials: 'same-origin',
                 body: JSON.stringify({ name, email, password })
             });
 
+            console.log('Response status:', response.status);
+            const data = await response.json();
+            console.log('Response data:', data);
+
             if (!response.ok) {
-                const data = await response.json();
                 throw new Error(data.message || 'Registration failed');
             }
-
-            const data = await response.json();
-            console.log('Registration successful:', data);
 
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
@@ -69,6 +75,7 @@ const auth = {
     },
 
     logout() {
+        console.log('Logging out...');
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('loginTime');
@@ -80,15 +87,29 @@ const auth = {
         const loginTime = localStorage.getItem('loginTime');
         const MAX_SESSION_TIME = 24 * 60 * 60 * 1000; // 24 hours
         
-        if (!token || !loginTime) return false;
+        if (!token || !loginTime) {
+            console.log('Not authenticated: token or login time missing');
+            return false;
+        }
         
         const elapsed = Date.now() - parseInt(loginTime);
-        return elapsed < MAX_SESSION_TIME;
+        if (elapsed >= MAX_SESSION_TIME) {
+            console.log('Not authenticated: session timed out');
+            return false;
+        }
+
+        console.log('Authenticated');
+        return true;
     },
 
     getCurrentUser() {
         const user = localStorage.getItem('user');
-        return user ? JSON.parse(user) : null;
+        if (!user) {
+            console.log('No user data found');
+            return null;
+        }
+        console.log('Current user:', JSON.parse(user));
+        return JSON.parse(user);
     }
 };
 
