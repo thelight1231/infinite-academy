@@ -1,5 +1,5 @@
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3000'
+    ? 'http://localhost:3000/.netlify/functions/api'
     : 'https://infinite01.netlify.app/.netlify/functions/api';
 
 const auth = {
