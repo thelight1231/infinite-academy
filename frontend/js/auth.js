@@ -14,6 +14,7 @@ const auth = {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({ email, password })
             });
 
@@ -47,6 +48,7 @@ const auth = {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({ name, email, password })
             });
 
