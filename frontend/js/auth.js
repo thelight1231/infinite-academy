@@ -1,11 +1,11 @@
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3000'
-    : 'https://infinite01.netlify.app';
+    ? 'http://localhost:3000/api'
+    : 'https://infinite01.netlify.app/api';
 
 const auth = {
     async login(email, password) {
         try {
-            const url = `${API_URL}/.netlify/functions/api/auth/login`;
+            const url = `${API_URL}/auth/login`;
             console.log('Login URL:', url);
             console.log('Login data:', { email });
             
@@ -41,7 +41,7 @@ const auth = {
 
     async register(name, email, password) {
         try {
-            const url = `${API_URL}/.netlify/functions/api/auth/register`;
+            const url = `${API_URL}/auth/register`;
             console.log('Registration URL:', url);
             console.log('Registration data:', { name, email });
             
